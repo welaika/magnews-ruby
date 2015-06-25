@@ -1,4 +1,4 @@
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 
 require "pry-byebug"
 require "webmock"
@@ -9,7 +9,7 @@ SimpleCov.start do
  add_filter "/spec/"
 end
 
-require 'magnews'
+require "magnews"
 
 Dir[File.expand_path("../support/**/*.rb", __FILE__)].sort.each { |f| require f }
 
