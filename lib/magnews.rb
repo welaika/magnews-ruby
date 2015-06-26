@@ -8,7 +8,7 @@ require "magnews/util/configuration"
 module Magnews
   extend SingleForwardable
 
-  def_delegators :configuration, :auth_token
+  def_delegators :configuration, :auth_token, :logger
 
   def self.configure(&block)
     yield configuration
