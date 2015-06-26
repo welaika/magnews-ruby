@@ -1,7 +1,7 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 
 require "pry-byebug"
-require "webmock"
+require "webmock/rspec"
 require "priscilla"
 require "simplecov"
 
@@ -22,3 +22,5 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 end
+
+WebMock.disable_net_connect!(allow_localhost: true)
