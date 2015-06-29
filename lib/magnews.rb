@@ -11,7 +11,7 @@ require "magnews/util/url_helper"
 module Magnews
   extend SingleForwardable
 
-  def_delegators :configuration, :auth_token, :logger
+  def_delegators :configuration, *Util::Configuration::DEFAULTS.keys
 
   def self.configure(&block)
     yield configuration

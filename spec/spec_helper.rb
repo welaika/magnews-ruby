@@ -1,5 +1,7 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 
+require "rspec"
+require "shoulda/matchers"
 require "pry-byebug"
 require "webmock/rspec"
 require "priscilla"
