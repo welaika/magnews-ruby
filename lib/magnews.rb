@@ -3,6 +3,7 @@ require "active_support"
 require "active_support/core_ext"
 
 require "magnews/version"
+require "magnews/errors"
 require "magnews/util/configuration"
 
 module Magnews
