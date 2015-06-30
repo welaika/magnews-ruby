@@ -29,13 +29,8 @@ module Magnews
       end
 
       def normalize_values!(values)
-        values.transform_values! do |value|
-          case value
-          when Array
-            value.join(",")
-          else
-            value
-          end
+        values.each do |key, value|
+          values[key] = value.join(",") if value.is_a? Array
         end
       end
     end

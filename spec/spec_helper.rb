@@ -11,7 +11,7 @@ SimpleCov.start do
  add_filter "/spec/"
 end
 
-require "magnews"
+require "magnews-ruby"
 
 Dir[File.expand_path("../support/**/*.rb", __FILE__)].sort.each { |f| require f }
 
