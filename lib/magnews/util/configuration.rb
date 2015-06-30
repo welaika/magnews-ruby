@@ -6,7 +6,7 @@ module Magnews
         api_version: "v19",
         endpoint: "https://ws-mn1.mag-news.it/ws/rest/api",
         iddatabase: 1,
-        logger: nil,
+        logger: Logger.new(STDOUT),
         auth_token: nil
       }
 

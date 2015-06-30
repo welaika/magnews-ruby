@@ -2,6 +2,7 @@ module Magnews
   class Contact < OpenStruct
     extend Magnews::HeaderHelper
     extend Magnews::UrlHelper
+    extend Magnews::LoggerHelper
 
     class << self
       def create!(values, options={})
