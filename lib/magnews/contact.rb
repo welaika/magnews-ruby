@@ -8,6 +8,8 @@ module Magnews
         normalize_values!(values)
         payload = { options: options.reverse_merge({ iddatabase: Magnews.iddatabase }), values: values }.to_json
         RestClient.post(url_for("contacts/subscribe"), payload, common_headers) do |response, request, result, &block|
+          logger.info { response.body }
+
           if (200..207).include? response.code
             respond_to_200(response)
           elsif Magnews::EXCEPTIONS_MAP[response.code].present?
