@@ -22,7 +22,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create a configuration file like this:
+
+```ruby
+Magnews.configure do |config|
+  config.auth_token = Rails.application.secrets.magnews_token
+  config.iddatabase = Rails.configuration.x.magnews.database_id
+  config.logger = Rails.configuration.x.newsletter.logger
+end
+```
+
+### Contact create
+
+To create a contact use create! method with subscription parameters (more infos [Magnews Rest API subscribe contact](http://support.magnews.it/en/ws/restcontacts.html#Subscribe_contact))
+
+```
+Magnews::Contact.create!(subscription_params)
+```
 
 ## Development
 
