@@ -40,12 +40,20 @@ To create a contact use `.create!` method with subscription parameters (more inf
 Magnews::Contact.create!(subscription_params)
 ```
 
-### Contacts list
+### Contacts list all (subscribed)
 
 List all subscribed contacts to a list use `.list_all`. It returns an hash with email and contact id.
 
 ```
 Magnews::Contact.list_all
+```
+
+### Contacts list all (unsubscribed)
+
+List all subscribed contacts to a list use `.list_unsubscribed`. It returns an hash with email and contact id.
+
+```
+Magnews::Contact.list_unsubscribed
 ```
 
 ### Contact delete

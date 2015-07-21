@@ -36,12 +36,16 @@ module Magnews
       end
 
       def list_all
-        query = "SELECT * FROM CONTACTS WHERE iddatabase=#{Magnews.iddatabase}"
-        response = RestClient.get(URI.escape(url_for("contacts/query?query=#{query}")), auth_header)
-        response = JSON.parse response
-        response.each(&:deep_symbolize_keys!)
+        response = query_users
         return {} if response.empty?
         response.reject! { |r| r[:status] != "subscribed" }
+        response.each_with_object({}) { |r, obj| obj[r[:fields][:email]] = r[:idcontact] }
+      end
+
+      def list_unsubscribed
+        response = query_users
+        return {} if response.empty?
+        response.reject! { |r| r[:status] != "unsubscribed" }
         response.each_with_object({}) { |r, obj| obj[r[:fields][:email]] = r[:idcontact] }
       end
 
@@ -59,6 +63,15 @@ module Magnews
         values.each do |key, value|
           values[key] = value.join(",") if value.is_a? Array
         end
+      end
+
+      private
+
+      def query_users
+        query = "SELECT * FROM CONTACTS WHERE iddatabase=#{Magnews.iddatabase}"
+        response = RestClient.get(URI.escape(url_for("contacts/query?query=#{query}")), auth_header)
+        response = JSON.parse response
+        response.each(&:deep_symbolize_keys!)
       end
     end
   end
