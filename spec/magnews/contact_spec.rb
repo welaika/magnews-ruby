@@ -3,12 +3,13 @@ require "spec_helper"
 describe Magnews::Contact do
 
   context ".create!" do
-    let(:auth_token) { "someToken" }
+    let(:auth_token) { "1792A4F2BEB1514B20828D6D679CFB3ED694B95498C426A448321F2E4B65D240DFBF5E4167D5155D026FB5E89A6240F92DB46E335D06021688189E6E636FF1F17A0E2F483DE321B6A39FD9630870B08F006E1F017B20BFD139991253A49C81680DF4810E91925DFFCFAFD4744295FED7AB54E756F818E36A67AA2770DF720F5B47DBC" }
+    let(:email) { "mario.rossi@example.com" }
     let(:values) do
       {
         nome: "Mario",
         cognome: "Rossi",
-        email: "mario.rossi@example.com",
+        email: email,
         negozio_preferito: "Cairo",
         interessi: ["Sport", "Fai da te"],
         insegna_planetsport: true,

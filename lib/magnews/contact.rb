@@ -27,6 +27,7 @@ module Magnews
         response = JSON.parse response
         response.each(&:deep_symbolize_keys!)
         return {} if response.empty?
+        response.reject! { |r| r[:status] != "subscribed" }
         response.each_with_object({}) { |r, obj| obj[r[:fields][:email]] = r[:idcontact] }
       end
 
