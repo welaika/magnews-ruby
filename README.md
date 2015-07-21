@@ -34,10 +34,18 @@ end
 
 ### Contact create
 
-To create a contact use create! method with subscription parameters (more infos [Magnews Rest API subscribe contact](http://support.magnews.it/en/ws/restcontacts.html#Subscribe_contact))
+To create a contact use `.create!` method with subscription parameters (more infos [Magnews Rest API subscribe contact](http://support.magnews.it/en/ws/restcontacts.html#Subscribe_contact))
 
 ```
 Magnews::Contact.create!(subscription_params)
+```
+
+### Contacts list
+
+List all registered contacts to a list use `.list_all`. It returns an hash with email and contact id.
+
+```
+Magnews::Contact.list_all
 ```
 
 ## Development

@@ -21,6 +21,15 @@ module Magnews
         end
       end
 
+      def list_all
+        query = "SELECT * FROM CONTACTS WHERE iddatabase=#{Magnews.iddatabase}"
+        response = RestClient.get(URI.escape(url_for("contacts/query?query=#{query}")), auth_header)
+        response = JSON.parse response
+        response.each(&:deep_symbolize_keys!)
+        return {} if response.empty?
+        response.each_with_object({}) { |r, obj| obj[r[:fields][:email]] = r[:idcontact] }
+      end
+
       def respond_to_200(response)
         body = JSON.parse(response.body).deep_symbolize_keys!
         if body[:ok]
