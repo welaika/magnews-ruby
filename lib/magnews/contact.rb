@@ -21,6 +21,20 @@ module Magnews
         end
       end
 
+      def delete!(email, options={})
+        payload = { options: options.reverse_merge({ iddatabase: Magnews.iddatabase }), values: { email: email } }.to_json
+        RestClient.post(url_for("contacts/unsubscribe"), payload, common_headers) do |response, request, result, &block|
+          logger.info { response.body }
+          if (200..207).include? response.code
+            respond_to_200(response)
+          elsif Magnews::EXCEPTIONS_MAP[response.code].present?
+            raise Magnews::EXCEPTIONS_MAP[response.code].new(response, response.code)
+          else
+            response.return!(request, result, &block)
+          end
+        end
+      end
+
       def list_all
         query = "SELECT * FROM CONTACTS WHERE iddatabase=#{Magnews.iddatabase}"
         response = RestClient.get(URI.escape(url_for("contacts/query?query=#{query}")), auth_header)

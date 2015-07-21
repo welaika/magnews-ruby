@@ -42,10 +42,18 @@ Magnews::Contact.create!(subscription_params)
 
 ### Contacts list
 
-List all registered contacts to a list use `.list_all`. It returns an hash with email and contact id.
+List all subscribed contacts to a list use `.list_all`. It returns an hash with email and contact id.
 
 ```
 Magnews::Contact.list_all
+```
+
+### Contact delete
+
+To delete a contact use `.delete!` method with email and options (optionally).
+
+```
+Magnews::Contact.delete!('admin@example.com')
 ```
 
 ## Development
